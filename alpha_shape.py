@@ -33,20 +33,6 @@ class AlphaShape:
         """
         assert self.points.shape[0] > 3, "Need at least four points"
 
-        def add_edge(edges, i, j):
-            """
-            Add a line between the i-th and j-th points,
-            if not in the list already
-            """
-            if (i, j) in edges or (j, i) in edges:
-                # already added
-                assert (j, i) in edges, "Can't go twice over same directed edge right?"
-                if only_outer:
-                    # if both neighboring triangles are in shape, it is not a boundary edge
-                    edges.remove((j, i))
-                return
-            edges.add((i, j))
-
         tri = Delaunay(self.points)
         tris = []
         # Loop over triangles:
