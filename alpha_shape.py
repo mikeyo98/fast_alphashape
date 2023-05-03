@@ -15,13 +15,13 @@ def create_rtree_index(triangles):
 
 
 class AlphaShape:
-    def __init__(self, points, alpha, only_outer=True) -> None:
+    def __init__(self, points, alpha) -> None:
         self.points = points
-        self.tris = self.alpha_shape(1/alpha, only_outer=only_outer)        
+        self.tris = self.alpha_shape(1/alpha)        
         self.treeIdx = create_rtree_index(self.tris)
 
     # https://stackoverflow.com/questions/23073170/calculate-bounding-polygon-of-alpha-shape-from-the-delaunay-triangulation
-    def alpha_shape(self, alpha, only_outer=True):
+    def alpha_shape(self, alpha):
         """
         Compute the alpha shape (concave hull) of a set of points.
         :param points: np.array of shape (n,2) points.
